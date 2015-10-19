@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+class Users extends CI_Controller {
 
 	public function __construct()
 	{
@@ -25,7 +25,35 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('/login');
+		$this->load->view('welcome_message');
+	}
+	public function logout()
+	{
+		$this->session->sess_destroy();
+		redirect("/");
+	}
+	public function get_user()
+	{
+		$this->load->view('users');
+	}
+	public function register()
+	{
+		$this->user->register($this->input->post());
+		redirect('/');
+	}
+	public function login()
+	{
+		if ($this->user->login($this->input->post())) //if this comes back as true, user was logged in
+		{
+			//$this->load->view('home'); we could use this load view here, but using method instead
+			redirect("/books");
+		}
+		else //if it comes back as false, no user was found
+		{
+
+     		redirect("/");
+		}
+		
 	}
 }
 
