@@ -7,7 +7,7 @@
 
 	<body>
 
-		<a href="/">Home</a>
+		<a href="/books">Home</a>
 		<a href="/books/add"> Add Book and Review</a>
 		<a href="/users/logout"> Logout </a>
 

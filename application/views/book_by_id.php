@@ -9,7 +9,7 @@
 <?php var_dump($book_info); ?>
 
 	<body>
-		<a href="/"> Home </a>
+		<a href="/books"> Home </a>
 		<a href="/books/logout"> Logout </a>
 
 		<h1> <?= $book_info['title'] ?><h1>
@@ -17,12 +17,12 @@
 
 		<h3> Reviews: <h3>
 			<hr>
-			<?php foreach ($book_info[book_review][comment] as $review) 
+		<!-- 	<?php foreach ($book_info[book_review][comment] as $review) 
 			{
 				echo $review;
 			}
 
-			?>
+			?> -->
 			3 of the last book reviews here
 			rating in stars
 			<a href="/users/get_user"> alias'</a> says: comment

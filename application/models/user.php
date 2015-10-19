@@ -66,7 +66,8 @@ class user extends CI_Model {
 				$this->session->set_flashdata('errors', "Email and password combination is invalid");
 				return false;
 			}
-			$this->session->set_userdata("user", $user["id"], $user['alias']);
+			$this->session->set_userdata("user id", $user["id"]);
+			$this->session->set_userdata("user alias", $user["alias"]);
 			return true;
 		}
 	}

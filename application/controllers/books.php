@@ -25,18 +25,19 @@ class Books extends CI_Controller {
 	 */
 	public function index()
 	{
-		//get the user's info
-		// $user = $this->user->get_user_info();
-		//vardump the information that was returned from this query
-		// var_dump($user);
-		$this->load->view("books");//pass the query results and array to the view page for viewing
-
-		//get the books info
-		//$books = $this->book->get_all_books();
-
+		//once they were logged in, i set $this->session->set_userdata['user id'], $user['id'] and $this->session->set_userdata['user alias'], $user['alias']. This is now accessible in session. 
 		//after they've logged in properly take them to /books
+		$this->load->view("books");
 
-		//$this->load->view('/books_home');
+		//get all books
+		//$books = $this->book->get_all_books();
+		
+		//get all reviews
+
+		//get all users
+
+
+		
 	}
 	public function logout()
 	{
@@ -51,14 +52,14 @@ class Books extends CI_Controller {
 	{
 		$book_id = $this->book->add($this->input->post()); //save the one value i'm returning so i can pass it to the view to get book by id.
 		$book_info = $this->book->get_book_info($book_id);
-		$book_reviews = $this->book->get_reviews($book_id);
+		$book_reviews = $this->review->get_reviews($book_id);
 		
 		$book_info[] = $book_reviews;
 		$this->load->view("book_by_id", array("book_info" => $book_info));
 	}
 	public function add_review()
 	{
-		$this->book->add_review($this->input->post());
+		$this->review->add_review($this->input->post());
 		redirect("/books");
 	}
 }

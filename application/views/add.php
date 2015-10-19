@@ -8,7 +8,7 @@
 
 
 	<body>
-		<a href="/"> Home </a>
+		<a href="/books"> Home </a>
 		<a href="/books/logout"> Logout </a>
 		<h2> Add a New Book Title and a Review: </h2>
 

@@ -24,7 +24,7 @@
 
 	<body>
 
-		<h2> Welcome, #ALIAS HERE !<h2>
+		<h2> Welcome, <?= $this->session->userdata['user alias']; ?> !<h2>
 
 			<a href="/books/add">Add Book and Review</a>
 			<a href="/books/logout">Logout </a>
