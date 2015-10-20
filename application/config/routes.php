@@ -40,6 +40,8 @@
 
 $route['default_controller'] = "welcome";
 $route['404_override'] = '';
+$route['/books/book_by_id/(:any)'] = '/books/book_by_id/$1';
+$route['/users/get_user/(:any)'] = 'users/get_user/$1';
 
 
 /* End of file routes.php */

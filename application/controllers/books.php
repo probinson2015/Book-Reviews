@@ -8,38 +8,20 @@ class Books extends CI_Controller {
 		$this->output->enable_profiler(TRUE);  //for testing
 	}
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -  
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in 
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see http://codeigniter.com/user_guide/general/urls.html
-	 */
 	public function index()
 	{
 		//once they were logged in, i set $this->session->set_userdata['user id'], $user['id'] and $this->session->set_userdata['user alias'], $user['alias']. This is now accessible in session. 
-		//after they've logged in properly take them to /books
-		$this->load->view("books");
-
-		//get all books
-		//$books = $this->book->get_all_books();
 		
-		//get all reviews
+		//after they've logged in properly take them to /books
 
-		//get all users
+		//get all reviews with user alias and other connected info
+		$reviews = $this->review->get_all_reviews();
 
+		$this->load->view("books", array("reviews" => $reviews));
 
 		
 	}
-	public function logout()
+	public function logout() 
 	{
 		$this->session->sess_destroy();
 		redirect("/");
@@ -48,21 +30,27 @@ class Books extends CI_Controller {
 	{	//this is going to load the add page
 		$this->load->view('/add');
 	}
-	public function book_by_id() //this will process the add book form
+	public function create() //process the add book form
 	{
-		$book_id = $this->book->add($this->input->post()); //save the one value i'm returning so i can pass it to the view to get book by id.
-		$book_info = $this->book->get_book_info($book_id);
-		$book_reviews = $this->review->get_reviews($book_id);
-		
-		$book_info[] = $book_reviews;
-		$this->load->view("book_by_id", array("book_info" => $book_info));
+		$this->book->add($this->input->post()); 
+		$book_id = $this->db->insert_id(); //get book id from insert
+		redirect("/books/book_by_id/".$book_id);			
 	}
 	public function add_review()
 	{
-		$this->review->add_review($this->input->post());
-		redirect("/books");
+		$book_id = $this->review->add_review($this->input->post());
+		
+		redirect("/books/book_by_id/" .$book_id);
 	}
+	public function book_by_id($book_id)
+	{
+		//$book_info = $this->book->get_book_info($book_id);
+		//$book_reviews = $this->review->get_reviews($book_id);
+		$book_reviews = $this->book->book_by_id($book_id);
+		$this->load->view("book_by_id", array("book_reviews" => $book_reviews));
+		// $book_info[] = $book_reviews;
+		// $this->load->view("book_by_id", array("book_info" => $book_info));
+		// var_dump($id);
+		// die();
+	}	
 }
-
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */

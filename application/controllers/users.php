@@ -8,21 +8,6 @@ class Users extends CI_Controller {
 		$this->output->enable_profiler(TRUE);  //for testing
 	}
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -  
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in 
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see http://codeigniter.com/user_guide/general/urls.html
-	 */
 	public function index()
 	{
 		$this->load->view('welcome_message');
@@ -32,9 +17,12 @@ class Users extends CI_Controller {
 		$this->session->sess_destroy();
 		redirect("/");
 	}
-	public function get_user()
+	public function get_user($id)
 	{
-		$this->load->view('users');
+		$user = $this->user->get_user($id);
+		$reviews = $this->review->get_reviews_by_user($id);
+		$this->load->view('users', array('user' => $user, 
+										'reviews' => $reviews));
 	}
 	public function register()
 	{

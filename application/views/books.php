@@ -8,41 +8,61 @@
 	<style>
 	.recent {
 		width: 500px;
-		border: 1px solid red;
-		/*display: inline-block;*/
+		display: inline-block;
 	}
-	.scroll_box {
-		overflow: scroll;
+	.other_books{
+		display: inline-block;
+		vertical-align: top; 
+		margin-left: 200px;
 	}
-	.other_books {
+	
+	.books_list{
 		width: 300px;
-		/*display: inline-block;*/
+		height: 200px;
 		border: 3px solid black;
+		overflow: scroll;	
+	}
+	.title {
+		font-size: 20px; 
 	}
 	</style>
 
+<?php //var_dump($reviews); ?>
 
 	<body>
-
-		<h2> Welcome, <?= $this->session->userdata['user alias']; ?> !<h2>
-
-			<a href="/books/add">Add Book and Review</a>
-			<a href="/books/logout">Logout </a>
-			
+		<div class = "header">
+			<h3> Welcome, <?= $this->session->userdata['user alias']; ?> !</h3>
+				
+				<a href="/books/add">Add Book and Review</a>
+				<a href="/books/logout">Logout </a>
+		</div>
 			<div class="recent">
 				<h2> Recent Book Reviews: </h2>
-				<p>"List out books with reviews here"</p>
+				<?php
+					for ($i = 0; $i<3; $i++) //to get the first three. alternative is break out of foreach
+					{
+						echo "<p class='title'>"; ?>
+						<a href="/books/book_by_id/<?=$reviews[$i]['book_id']; ?>" > <?=$reviews[$i]['title']; ?> </a> 
+						<?php echo "</p>";
+						echo "<p> Rating:" . $reviews[$i]['rating'] . "<p>"; ?>
+						<a href="/users/get_user/<?=$reviews[$i]['user_id']; ?> "<?php  echo ">" . $reviews[$i]['alias'] . "</a>" .  " says: " . $reviews[$i]['comment'] . "<p>";
+					}
+				?>
 			</div>	
-
-				<h2> Other Books with Reviews: </h2>
-			<div class="other_books">
-				<div class="scroll_box">
-					<p>List books here</p>
-					<p>List books here</p>
-					<p>List books here</p>
-					<p>List books here</p>
+				<div class="other_books">
+					<h2> Other Books with Reviews: </h2>
+					<div class="books_list">
+						
+						<?php foreach ($reviews as $review)
+						{
+						echo "<p>"; ?>
+						<a href="/books/book_by_id/<?=$review['book_id']; ?>" > <?=$review['title']; ?> </a> 
+						<?php echo "</p>";
+						}
+						?>
+						
+					</div>
 				</div>
-			</div>
 		
 
 	</body>

@@ -33,16 +33,29 @@ class book extends CI_Model {
 		//insert review and rating based on book_id and user_id
 		$query = "INSERT into reviews (comment, rating, book_id, user_id, created_at, updated_at) VALUES (?,?,?,?, NOW(), NOW())";
 
-		$values = array($post['comment'], $post['rating'], $book_id['id'], $this->session->userdata('user'));
+		$values = array($post['comment'], $post['rating'], $book_id['id'], $this->session->userdata('user id'));
 		$this->db->query($query, $values);
-		return $book_id;
+		//return $book_id;
 
 	}
-	public function get_book_info($book_id)
+	// public function get_book_info($book_id) //redo this! send to book_by_id instead
+	// {
+	// 	$query = "SELECT books.id as 'book id', books.title, authors.name as 'author name', reviews.rating, reviews.comment, users.id as 'user id', users.alias from books join authors on authors.id = books.author_id join reviews on reviews.book_id = books.id join users on users.id = reviews.user_id WHERE books.id = ?";
+	// 	$values = array($book_id['id']);
+	// 	return $this->db->query($query, $values)->row_array();
+	// }
+
+	public function book_by_id($book_id)
 	{
-		$query = "SELECT books.id as 'book id', books.title, authors.name as 'author name', reviews.rating, reviews.comment, users.id as 'user id', users.alias from books join authors on authors.id = books.author_id join reviews on reviews.book_id = books.id join users on users.id = reviews.user_id WHERE books.id = ?";
-		$values = array($book_id['id']);
-		return $this->db->query($query, $values)->row_array();
+		$query = "SELECT books.id as book_id, books.title, authors.name as 'author name', reviews.rating, users.alias, users.id as 'commentors_id', reviews.comment, reviews.created_at 
+			FROM books
+			JOIN authors on books.author_id = authors.id
+			JOIN reviews on reviews.book_id = books.id
+			JOIN users on reviews.user_id = users.id 
+			WHERE books.id  = ? 
+			ORDER BY created_at DESC";
+		$values = array($book_id);
+		return $this->db->query($query, $values)->result_array();
 	}
 
 	

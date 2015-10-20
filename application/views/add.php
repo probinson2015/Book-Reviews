@@ -12,7 +12,7 @@
 		<a href="/books/logout"> Logout </a>
 		<h2> Add a New Book Title and a Review: </h2>
 
-		<form action='/books/book_by_id' method="post">
+		<form action='/books/create' method="post">
 		<p>
 			Book Title: <input type="text" name="title" >
 		</p>
