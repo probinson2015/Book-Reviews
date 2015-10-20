@@ -16,7 +16,14 @@ public function add_review($post)
 	// 	$values = array($book_id['id']);
 	// 	return $this->db->query($query, $values)->result_array();
 	// }
-
+	public function get_three_reviews()
+	{
+		$query = "SELECT reviews.comment, reviews.rating, reviews.created_at, books.title, books.id as book_id, users.alias, users.id as 'user_id' 
+			from reviews join books on books.id = reviews.book_id 
+			join users on reviews.user_id = users.id 
+			order by reviews.created_at DESC LIMIT 3";
+		return $this->db->query($query)->result_array();
+	}
 	public function get_all_reviews()
 	{
 		$query = "SELECT reviews.comment, reviews.rating, reviews.created_at, books.title, books.id as book_id, users.alias, users.id as 'user_id' 

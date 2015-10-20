@@ -14,10 +14,20 @@ class Books extends CI_Controller {
 		
 		//after they've logged in properly take them to /books
 
+
 		//get all reviews with user alias and other connected info
 		$reviews = $this->review->get_all_reviews();
+		$three_reviews = $this->review->get_three_reviews();
 
-		$this->load->view("books", array("reviews" => $reviews));
+		if (empty($reviews))
+		{
+			$this->load->view('/add');
+		}
+		else
+		{
+		$this->load->view("books", array('reviews' => $reviews, 
+										'three_reviews' => $three_reviews));
+		}
 
 		
 	}
@@ -26,14 +36,17 @@ class Books extends CI_Controller {
 		$this->session->sess_destroy();
 		redirect("/");
 	}
-	public function add()
-	{	//this is going to load the add page
-		$this->load->view('/add');
+	public function add()	
+	{	
+		$authors = $this->author->get_authors();
+		//this is going to load the add page
+		$this->load->view('/add', array('authors' => $authors));
 	}
 	public function create() //process the add book form
 	{
+		
 		$this->book->add($this->input->post()); 
-		$book_id = $this->db->insert_id(); //get book id from insert
+		$book_id = $this->db->insert_id(); //get book id from insert	
 		redirect("/books/book_by_id/".$book_id);			
 	}
 	public function add_review()
@@ -44,12 +57,12 @@ class Books extends CI_Controller {
 	}
 	public function book_by_id($book_id)
 	{
-		//$book_info = $this->book->get_book_info($book_id);
-		//$book_reviews = $this->review->get_reviews($book_id);
+		$book = $this->book->get_book_info($book_id);
 		$book_reviews = $this->book->book_by_id($book_id);
-		$this->load->view("book_by_id", array("book_reviews" => $book_reviews));
+		$this->load->view("book_by_id", array("book_reviews" => $book_reviews, 
+												'book' => $book));
 		// $book_info[] = $book_reviews;
-		// $this->load->view("book_by_id", array("book_info" => $book_info));
+		
 		// var_dump($id);
 		// die();
 	}	

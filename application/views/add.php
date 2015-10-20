@@ -5,8 +5,6 @@
     <meta name="description" content="Add description ">
     <title>Add Book and Review</title>
 </head>
-
-
 	<body>
 		<a href="/books"> Home </a>
 		<a href="/books/logout"> Logout </a>
@@ -19,7 +17,14 @@
 		<p>
 			Author: 
 				Choose from the list: <select name = "author">
-										<!-- <option value = foreach authors as author name = "author" </option> -->
+									<option	value = 'author'> </option>									
+									<?php foreach ($authors as $author) 
+											{
+												echo "<option value = 'author'>" . 
+												$author['name'] . "</option>";
+											}	
+										?>
+
 										</select>
 				Or add a new author: <input type="text" name="author">
 		</p>
@@ -29,6 +34,7 @@
 		<p> 
 			Rating (1-5) <input type="number" name="rating" min="1" max="5"> stars
 		</p>
+		<input type="hidden" name="user_id" value="<?= $this->session->userdata['user id']; ?>" >
 		<input type="submit" value="Add Book and Review">
 		</form>
 

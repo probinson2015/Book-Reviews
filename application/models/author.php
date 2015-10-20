@@ -2,6 +2,10 @@
 
 class author extends CI_Model {
 
-	
+	public function get_authors()
+	{
+		$query = "SELECT authors.name from authors";
+		return $this->db->query($query)->result_array();
+	}
 	
 }

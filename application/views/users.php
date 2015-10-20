@@ -7,8 +7,6 @@
 	<style>
 	.reviews {
 		overflow: scroll;
-		height: 300px;
-		width: 200px;
 	}
 	</style>
 
