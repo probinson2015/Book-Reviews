@@ -22,60 +22,52 @@
 		color: green;
 	}
 </style>
-		<body>
+	<body>
+
+		<div class="container-fluid">
 			<h1> Welcome!</h1>
-			<?php if ($this->session->flashdata('errors'))
-			{
-				echo $this->session->flashdata('errors');
-			} 
-			if ($this->session->flashdata('success'))
-			{
-				echo $this->session->flashdata('success');
-			} 
-			?>
-			<h2>Register</h2>
-			<form action = "/users/register" method = "post">
+			<div class="row">
+	  			<div class="col-md-6">
+					<div class="form-group">
+						
+						<?php if ($this->session->flashdata('errors'))
+						{
+							echo $this->session->flashdata('errors');
+						} 
+						if ($this->session->flashdata('success'))
+						{
+							echo $this->session->flashdata('success');
+						} 
+						?>
+						<h2>Register</h2>
+						<form action = "/users/register" method = "post">
+							<p>Email <input class="form-control" name = "email" type  ="text"></p>
+							<p> First Name: <input class="form-control" name = "first_name" type  ="text"></p>
+							<p> Last Name: <input class="form-control" name = "last_name" type  ="text"></p>
+							<p> Alias: <input class="form-control" name = "alias" type  ="text"></p>		
+							<p> Password: <input class="form-control" name = "password" type  ="password"></p>
+							<p> Confirm Password: <input class="form-control" name = "cpassword" type  ="password"></p>
+							<p> 
+								<input class="btn btn-md btn-primary" value = "register" type = "submit" name="registration">
+								<input type = "hidden" name = "action" value="registration">
+							</p>
+						</form>
+					</div>
+				</div>
 			
-			<p>Email
-			<input name = "email" type  ="text">
-			</p>
-			<p> First Name:
-			<input name = "first_name" type  ="text">
-			</p>
-			<p> Last Name:
-			<input name = "last_name" type  ="text">
-			</p>
-			<p> Alias:
-			<input name = "alias" type  ="text">
-			</p>
-			<p> Password:
-			<input name = "password" type  ="password">
-			</p>
-			<p> Confirm Password:
-			<input name = "cpassword" type  ="password">
-			</p>
-			<p> 
-			<input value = "register" type = "submit" name="registration">
-			<input type = "hidden" name = "action" value="registration">
-			</p>
-
-			</form>
-
-			
-			
-			<h2>Login</h2>
-			<form action = "/users/login" method = "post">
-			
-				<p>Email
-				<input name = "email" type  ="text">
-				</p>
-				<p> Password:
-				<input name = "password" type ="password">
-				</p>
-				<input value="login" type = "submit">
-				<input type = "hidden" name = "action" value="login">			
-			</form>
-
-		</body>
-
+		
+				<div class="row">
+		 			<div class="col-md-6">
+						<h2>Login</h2>
+						<form action = "/users/login" method = "post">
+							<p>Email: <input class="form-control" name = "email" type  ="text"></p>
+							<p> Password: <input class="form-control" name = "password" type ="password"></p>
+							<input class="btn btn-md btn-primary" value="login" type = "submit">
+							<input type = "hidden" name = "action" value="login">			
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>

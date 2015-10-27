@@ -14,16 +14,16 @@
 	}
 	body { padding-top: 50px; }
 	</style>
-
+</head>
 	<body>
 		<nav class="navbar navbar-default navbar-fixed-top">
-  		<div class="container-fluid">
-			<ul class="nav nav-pills">
-				 <li role="presentation"><a href="/books">Home</a></li>
-				 <li role="presentation"><a href="/books/add"> Add Book and Review</a></li>
-				 <li role="presentation"><a href="/users/logout"> Logout </a></li>
-			</ul>
-		</div>
+	  		<div class="container-fluid">
+				<ul class="nav nav-pills">
+					 <li role="presentation"><a href="/books">Home</a></li>
+					 <li role="presentation"><a href="/books/add"> Add Book and Review</a></li>
+					 <li role="presentation"><a href="/users/logout"> Logout </a></li>
+				</ul>
+			</div>
 		</nav>
 		<div class="container-fluid">
 			<h2> User Alias: <?= $user['alias']; ?></h2>
@@ -32,18 +32,17 @@
 			<h4> Total Reviews: <?= count($reviews); ?></h4>
 		
 
-		<h3> Posted Reviews on the following books: </h3>
-		<div class="reviews">
-			<?php foreach ($reviews as $review)
-			{
-				echo "<p>"; ?>
-							<a href="/books/book_by_id/<?=$review['book_id']; ?>" > <?=$review['title']; ?> </a> 
-							<?php 
-				echo "</p>";
-			}
-			?>
-		</div>
+			<h3> Posted Reviews on the following books: </h3>
+			<div class="reviews">
+				<?php foreach ($reviews as $review)
+				{
+					echo "<p>"; ?>
+								<a href="/books/book_by_id/<?=$review['book_id']; ?>" > <?=$review['title']; ?> </a> 
+								<?php 
+					echo "</p>";
+				}
+				?>
+			</div>
 		</div>
 	</body>
-
 </html>
