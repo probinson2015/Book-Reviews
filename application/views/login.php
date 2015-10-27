@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" href="/assets/CSS/normalize.css">
+	<link rel="stylesheet" href="/assets/CSS/normalize.css">
+    <link rel="stylesheet" href="/assets/CSS/bootstrap.css">
+    <link rel="stylesheet" href="/assets/CSS/bootstrap-theme.min.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <meta charset="utf-8"/>
     <title>Welcome</title>
 
