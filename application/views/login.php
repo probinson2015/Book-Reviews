@@ -41,7 +41,7 @@
 						?>
 						<h2>Register</h2>
 						<form action = "/users/register" method = "post">
-							<p>Email <input class="form-control" name = "email" type  ="text"></p>
+							<p>Email: <input class="form-control" name = "email" type  ="text"></p>
 							<p> First Name: <input class="form-control" name = "first_name" type  ="text"></p>
 							<p> Last Name: <input class="form-control" name = "last_name" type  ="text"></p>
 							<p> Alias: <input class="form-control" name = "alias" type  ="text"></p>		
