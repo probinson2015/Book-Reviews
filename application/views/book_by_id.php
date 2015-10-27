@@ -10,10 +10,12 @@
     <title>Add Book Review</title>
 
     <style>
-	textarea {
-		height: 60px;
-	}
-	body { padding-top: 70px; }
+		textarea {
+			height: 60px;
+		}
+		body { 
+			padding-top: 50px; 
+		}
     </style>
 
 </head>
@@ -23,7 +25,7 @@
 			<nav class="navbar navbar-default navbar-fixed-top">
 				<ul class="nav nav-pills">
 					<li role="presentation"><a href="/books"> Home </a></li>
-			 		<li role="presentation"><a href="/books/logout"> Logout </a></li>
+			 		<li style="float: right;" role="presentation"><a href="/books/logout">Logout </a></li>
 			 	</ul>
 			</nav>
 			<div class="col-md-6">

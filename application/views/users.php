@@ -21,7 +21,7 @@
 				<ul class="nav nav-pills">
 					 <li role="presentation"><a href="/books">Home</a></li>
 					 <li role="presentation"><a href="/books/add"> Add Book and Review</a></li>
-					 <li role="presentation"><a href="/users/logout"> Logout </a></li>
+					<li style="float: right;" role="presentation"><a href="/books/logout">Logout </a></li>
 				</ul>
 			</div>
 		</nav>

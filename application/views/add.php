@@ -9,7 +9,7 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <title>Add Book and Review</title>
     <style>
-    body { padding-top: 70px; }
+    	body { padding-top: 50px; }
     </style>
 </head>
 	<body>
@@ -18,7 +18,7 @@
 	  			<div class="container-fluid">
 					<ul class="nav nav-pills">
 						<li role="presentation"><a href="/books"> Home </a></li>
-						<li role="presentation"><a href="/books/logout"> Logout </a></li>
+						<li style="float: right;" role="presentation"><a href="/books/logout">Logout </a></li>
 					</ul>
 				</div>
 			</nav>

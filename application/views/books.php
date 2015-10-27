@@ -10,7 +10,7 @@
         <title>Books Home</title>
     </head>
 	<style>
-	body { padding-top: 70px; }
+	body { padding-top: 50px; }
 	.recent {
 		display: inline-block;
 	}
@@ -28,11 +28,11 @@
 	  			<div class="container-fluid">
 					<ul class="nav nav-pills">
 						<li role="presentation"><a href="/books/add">Add Book and Review</a></li>
-						<li role="presentation"><a href="/books/logout">Logout </a></li>
+						<li style="float: right;" role="presentation"><a href="/books/logout">Logout </a></li>
 					</ul>
 				</div>
 			</nav>
-  			<div class="col-xs-12 col-md-8">
+  			<div class="col-xs-6">
 				<h2> Welcome, <?= $this->session->userdata['user alias']; ?>!</h2>
 				<div class="recent">
 					<h3> Recent Book Reviews: </h3>
@@ -43,16 +43,16 @@
 								<p class='title'>
 									<a href="/books/book_by_id/<?=$review['book_id'] ?>"> <?=$review['title'] ?> </a> 
 								</p>
-								<p> Rating: <?= $review['rating'] ?> <p> 
-								<a href="/users/get_user/<?=$review['user_id'] ?> "> <?= $review['alias'] ?> </a>  says: <?= $review['comment']?>  </p><hr> 
+								<p style="float: right;" > Rating: <?= $review['rating'] ?> <p> 
+								<a href="/users/get_user/<?=$review['user_id'] ?> "> <?= $review['alias'] ?> </a>  says:</p><p> <?= $review['comment']?>  </p><hr> 
 						<?php } ?>
 					</div>
 				</div>
 			</div>
 			<div class="container-fluid">
 				<div class="row">
-	  				<div class="col-xs-6 col-sm-4">
-						<div class="panel panel-default">
+	  				<div class="col-xs-6">
+						<div style="margin-top: 40px;" class="panel panel-default">
 							<div class="panel-heading">
 								Other Books with Reviews: 
 							</div>

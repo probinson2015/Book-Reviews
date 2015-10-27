@@ -11,23 +11,25 @@
 
 </head>
 <style>
-	* {
-		font-family: sans-serif;
+	body {
+		background-image: url('/assets/images/login-background.jpeg');
+		background-size: 100%;
+		background-repeat: no-repeat;
 	}
-	.error 
+	/*.error 
 	{
 		color: red;
 	}
 	.success {
 		color: green;
-	}
+	}*/
 </style>
 	<body>
 
 		<div class="container-fluid">
 			<h1> Welcome!</h1>
 			<div class="row">
-	  			<div class="col-md-6">
+	  			<div class="col-md-3">
 					<div class="form-group">
 						
 						<?php if ($this->session->flashdata('errors'))
@@ -57,7 +59,7 @@
 			
 		
 				<div class="row">
-		 			<div class="col-md-6">
+		 			<div class="col-md-3">
 						<h2>Login</h2>
 						<form action = "/users/login" method = "post">
 							<p>Email: <input class="form-control" name = "email" type  ="text"></p>
