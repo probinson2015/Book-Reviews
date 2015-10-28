@@ -31,18 +31,25 @@
 			<h4> Email: <?= $user['email']; ?></h4>
 			<h4> Total Reviews: <?= count($reviews); ?></h4>
 		
-
-			<h3> Posted Reviews on the following books: </h3>
-			<div class="reviews">
-				<?php foreach ($reviews as $review)
-				{
-					echo "<p>"; ?>
-								<a href="/books/book_by_id/<?=$review['book_id']; ?>" > <?=$review['title']; ?> </a> 
-								<?php 
-					echo "</p>";
-				}
-				?>
-			</div>
+			<div class="col-xs-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						Posted Reviews on the following books: 
+					</div>
+					<div class="panel-body">
+						<ul class="list-group">
+							<?php foreach ($reviews as $review)
+							{
+								echo "<li class='list-group-item'>"; ?>
+											<a href="/books/book_by_id/<?=$review['book_id']; ?>" > <?=$review['title']; ?> </a> 
+											<?php 
+								echo "</li>";
+							}
+							?>
+						</ul>
+					</div>
+				</div>
+			</div>	
 		</div>
 	</body>
 </html>
