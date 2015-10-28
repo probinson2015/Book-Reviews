@@ -11,31 +11,55 @@ class book extends CI_Model {
 	// }
 	public function add($post)
 
-	{	//adding author first since it has no dependencies
-		$query = "INSERT into authors (name, created_at, updated_at) VALUES (?,NOW(), NOW())";
-		$values = array($post['author']);
-		$this->db->query($query, $values);
-
-		//get author id
-		$query = "SELECT id from authors WHERE name = ?";
-		$values = array($post['author']);
-		$author_id = $this->db->query($query, $values)->row_array(); 
+	{	
+		//validations for adding new book and author
+		$this->form_validation->set_rules("title", "Book Title", "trim|required|is_unique[books.title]"); //table and field from db for is unique
 		
-		//insert title and author id
-		$query = "INSERT into books (title, author_id, created_at, updated_at) VALUES (?, ?, NOW(), NOW())";
-		$values = array($post['title'], $author_id['id']);
-		$this->db->query($query, $values);
-	
-		//get book id
-		$query = "SELECT id from books where title = ?";
-		$values = array($post['title']);
-		$book_id = $this->db->query($query, $values)->row_array();	
+		$this->form_validation->set_rules("author", "Author", "trim|required");
+		$this->form_validation->set_rules("comment", "Review", "trim|required");
+		
+		//Check password's length - make it at least 8 characters. 
+		//Check if password and confirm password field has same value.
+		$this->form_validation->set_rules("rating", "Rating", "trim|required");
+		
+		
+		//end validations rules
 
-		//insert review and rating based on book_id and user_id
-		$query = "INSERT into reviews (comment, rating, book_id, user_id, created_at, updated_at) VALUES (?,?,?,?, NOW(), NOW())";
+		if($this->form_validation->run() === FALSE)
+		{
+     		$this->session->set_flashdata('errors', validation_errors());
+     		return false;
+     				
+		}
+		else
+		{
+			//adding author first since it has no dependencies
+			$query = "INSERT into authors (name, created_at, updated_at) VALUES (?,NOW(), NOW())";
+			$values = array($post['author']);
+			$this->db->query($query, $values);
 
-		$values = array($post['comment'], $post['rating'], $book_id['id'], $post['user_id']);
-		$this->db->query($query, $values);
+			//get author id
+			$query = "SELECT id from authors WHERE name = ?";
+			$values = array($post['author']);
+			$author_id = $this->db->query($query, $values)->row_array(); 
+			
+			//insert title and author id
+			$query = "INSERT into books (title, author_id, created_at, updated_at) VALUES (?, ?, NOW(), NOW())";
+			$values = array($post['title'], $author_id['id']);
+			$this->db->query($query, $values);
+		
+			//get book id
+			$query = "SELECT id from books where title = ?";
+			$values = array($post['title']);
+			$book_id = $this->db->query($query, $values)->row_array();	
+
+			//insert review and rating based on book_id and user_id
+			$query = "INSERT into reviews (comment, rating, book_id, user_id, created_at, updated_at) VALUES (?,?,?,?, NOW(), NOW())";
+
+			$values = array($post['comment'], $post['rating'], $book_id['id'], $post['user_id']);
+			$this->db->query($query, $values);
+			return true;
+		}	
 
 	}
 	public function get_book_info($book_id) //redo this! send to book_by_id instead

@@ -40,14 +40,23 @@ class Books extends CI_Controller {
 	{	
 		$authors = $this->author->get_authors();
 		//this is going to load the add page
-		$this->load->view('/add', array('authors' => $authors));
+		$this->load->view('add', array('authors' => $authors));
 	}
 	public function create() //process the add book form
 	{
 		
-		$this->book->add($this->input->post()); 
-		$book_id = $this->db->insert_id(); //get book id from insert	
-		redirect("/books/book_by_id/".$book_id);			
+		//$this->book->add($this->input->post()); 
+		//if validation errors stay on add page
+		if($this->book->add($this->input->post()) === false)
+		{
+			redirect('/books/add');
+		}
+
+		else
+		{
+			$book_id = $this->db->insert_id(); //get book id from insert	
+			redirect("/books/book_by_id/".$book_id);			
+		}
 	}
 	public function add_review()
 	{

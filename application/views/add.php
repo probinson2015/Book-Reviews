@@ -25,6 +25,10 @@
 			<div class="row">
 				<div class="col-md-4">
 					<h3> Add a New Book Title and a Review: </h3>
+					<?php if ($this->session->flashdata('errors'))
+						{
+							echo $this->session->flashdata('errors');
+						} ?>
 					<div class="form-group">
 						<form class="form-horizontal" action='/books/create' method="post">
 							<p> Book Title: <input class="form-control" type="text" name="title" > </p>
