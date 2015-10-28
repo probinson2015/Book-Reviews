@@ -35,8 +35,17 @@
 				<hr>
 				<?php foreach ($book_reviews as $book_review)
 				{
-					echo "<p>" . "rating: " . $book_review['rating'] . " out of 5" . "</p>";
-					echo "<p>"; ?>
+					 echo "Rating:";
+					 for ($i=0; $i < $book_review['rating']; $i++) { ?>
+ 			 						<span class=" glyphicon glyphicon-star" aria-hidden="true"></span>
+ 									<?	}?>
+ 			 						
+									<?php for ($i=0; $i < (5 - $book_review['rating']); $i++) { ?>
+ 			 						<span class=" glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+									
+
+ 									<?	}?> </p> 
+					 
 					 <a href="/users/get_user/<?=$book_review['commentors_id']; ?> " > <?= $book_review['alias']; ?> </a> says: <?= $book_review['comment']; ?> </p>
 					<?php echo "<p>" . "Posted on " . $book_review['created_at'];
 					echo "<hr>";
@@ -47,7 +56,7 @@
 				<div class="form-group">
 					<form action="/books/add_review" method="post">
 						<h2> Add a review: </h2>
-						<textarea name="comment"></textarea>
+						<textarea class="form-control"name="comment"></textarea>
 						<p> Rating (1-5) <input type="number" name="rating" min="1" max="5"> stars </p>
 						<input type="hidden" name="user_id" value="<?= $this->session->userdata['user id']; ?>" >
 						<input type="hidden" name="book_id" value="<?= $book['id']; ?>" >

@@ -43,7 +43,14 @@
 								<p class='title'>
 									<a href="/books/book_by_id/<?=$review['book_id'] ?>"> <?=$review['title'] ?> </a> 
 								</p>
-								<p style="float: right;" > Rating: <?= $review['rating'] ?> <p> 
+								<p style="float: right;" > Rating: 
+									<?php for ($i=0; $i < $review['rating']; $i++) { ?>
+ 			 						<span class=" glyphicon glyphicon-star" aria-hidden="true"></span>
+ 									<?	}?>
+									<?php for ($i=0; $i < (5 - $review['rating']); $i++) { ?>
+ 			 						<span class=" glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+ 									<?	}?> 
+ 								</p> 
 								<a href="/users/get_user/<?=$review['user_id'] ?> "> <?= $review['alias'] ?> </a>  says:</p><p> <?= $review['comment']?>  </p><hr> 
 						<?php } ?>
 					</div>
